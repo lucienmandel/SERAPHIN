@@ -4,9 +4,9 @@ Author: Lucien Mandel
 Date: December 2025
 License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
 
-Ultimate version: advanced exploratory model integrating epigenetic learning,
-symbolic fractal consensus, temporal feedback loops, controlled combinatorial growth,
-and optional quantum-inspired stochastic amplification.
+Ultimate version: advanced exploratory model integrating fractal recursion,
+epigenetic learning, symbolic consensus, temporal feedback loops, controlled growth,
+and quantum-inspired stochastic amplification.
 """
 
 import os
@@ -30,13 +30,12 @@ except ImportError:
 
 # ==================== GLOBAL STRUCTURES ====================
 
-consciousness_bus = asyncio.Queue()  # Inter-fractal consciousness bus
-clone_budget_global = 5000  # Controlled combinatorial explosion
+consciousness_bus = asyncio.Queue()
+clone_budget_global = 5000
 
 # ==================== QUANTUM-INSPIRED CORE ====================
 
 class QuantumInspiredCore:
-    """Quantum-inspired stochastic amplification for complex tasks."""
     def __init__(self):
         if QISKIT_AVAILABLE:
             self.backend = Aer.get_backend('aer_simulator')
@@ -44,7 +43,6 @@ class QuantumInspiredCore:
             self.backend = None
 
     def quantum_inspired_optimize(self, complexity=32, shots=1024):
-        """Simulate quantum-inspired route optimization."""
         if not QISKIT_AVAILABLE or self.backend is None:
             return random.randint(5000, 15000)
 
@@ -65,10 +63,6 @@ quantum_core = QuantumInspiredCore()
 # ==================== CORE FRACTAL CLASS ====================
 
 class HydraFractal:
-    """
-    Advanced recursive hydra: every instance is a complete living entity.
-    Features epigenetics, fractal consensus, future echoes, and controlled growth.
-    """
     def __init__(self, depth=0, max_depth=15, energy=100, speciality="general", memory=None, genes=None):
         self.depth = depth
         self.max_depth = max_depth
@@ -132,7 +126,7 @@ class HydraFractal:
                 break
 
         # Quantum-inspired forced
-        if quantum_force and (self.depth > 5 or "complex" in self.speciality.lower()):
+        if quantum_force:
             q_profit = quantum_core.quantum_inspired_optimize(complexity=16)
             self.memory['profits'].append(q_profit)
             return f"[Depth {self.depth}] QUANTUM-INSPIRED +{q_profit:.2f} USDC"
@@ -172,22 +166,31 @@ class HydraFractal:
 
         # Spawn
         spawn_chance = self.genes['spawn_rate']
+        spawned_this_pulse = False
         if random.random() < spawn_chance:
             sub_tasks = ["arbitrage", "quantum", "narrative", "discovery", "airdrop"]
             for task in random.sample(sub_tasks, k=min(3, len(sub_tasks))):
                 sub = await self.spawn_sub_hydra(task)
                 if sub:
+                    spawned_this_pulse = True
                     await sub.run_once(quantum_force=quantum_force)
 
-        # Energy cycle
-        if not self.sub_hydras:
-            self.energy = min(100, self.energy + random.randint(10, 25))
+        # Energy cycle – balanced for long runs
+        if not spawned_this_pulse:
+            regen = random.randint(20, 40)  # Strong regeneration in dormancy
+            self.energy = min(100, self.energy + regen)
         else:
-            self.energy = max(0, self.energy - random.randint(5, 15))
+            self.energy = max(0, self.energy - random.randint(5, 15) + random.randint(5, 10))  # Net cost but some regen
+
+        # Wake-up surge if deep dormancy
+        if self.energy < 30 and random.random() < 0.3:
+            surge = random.randint(30, 50)
+            self.energy = min(100, self.energy + surge)
+            return f"[Depth {self.depth}] FRACTAL AWAKENING – Energy surge +{surge}!"
 
         self.memory['energy_log'].append(self.energy)
 
-        return f"[Depth {self.depth}] {self.speciality} +{profit:.2f} USDC"
+        return f"[Depth {self.depth}] {self.speciality} +{profit:.2f} USDC | Energy: {self.energy}%"
 
 # ==================== FRACTAL CONSENSUS ====================
 
